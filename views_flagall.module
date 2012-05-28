@@ -14,7 +14,7 @@ function views_flagall_views_api() {
 function views_flagall_menu() {
   $items['flagall'] = array(
     'title' => 'Flag all',
-    'description' => 'Flag all results on the view page.'
+    'description' => 'Flag all results on the view page.',
     'page callback' => 'views_flagall_flagall',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
