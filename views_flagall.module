@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * Implements hook_views_api().
+ */
+function views_flagall_views_api() {
+	//dpm('views_api');
+	return array(
+    'api' => '3.0',
+		'path' => drupal_get_path('module', 'views_flagall'),
+  );
+}
+
+function views_flagall_menu() {
+  $items['flagall'] = array(
+    'page callback' => 'views_flagall_flagall',
+  );
+  return $items;
+}
+
+function views_flagall_flagall() {
+
+  // Flag the relevant nodes in each of the flag lists.
+  $flags_array = explode(',', $_GET['flags']);
+  foreach ($flags_array as $flag_item) {
+    $flag = flag_get_flag($flag_item);
+    $nids = explode(',', $_GET['nids']);
+    foreach($nids as $nid) {
+      $flag->flag('flag', $nid);
+    }
+  }
+  // TODO: Add admin page so that the success message can be customised and check whether
+  // flagging was successful and return appropriate success/failure messages.
+  drupal_set_message('These items have been added to your shortlist!');
+  drupal_goto(urldecode($_GET['destination']));
+}
+
+

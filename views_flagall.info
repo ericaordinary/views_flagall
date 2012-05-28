@@ -1,0 +1,6 @@
+name = Views Flag All
+description = Adds a flag all link to a view header or footer.
+package = Views
+core = 6.x
+dependencies[] = views
+dependencies[] = flag
